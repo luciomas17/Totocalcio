@@ -1,10 +1,19 @@
 package it.polito.tdp.toto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Espandi {
 	
-	public void espandiPronostico(Pronostico p) {
+	private List<Schedina> soluzioni;
+	
+	public List<Schedina> espandiPronostico(Pronostico p) {
 		Schedina parziale = new Schedina(p.getN());
-		espandi(p, parziale, 0);	
+		this.soluzioni = new ArrayList<Schedina>();
+		
+		espandi(p, parziale, 0);
+		
+		return this.soluzioni;
 	}
 	
 	/*	livello ricorsione = singola partita
@@ -20,7 +29,7 @@ public class Espandi {
 		 */	
 		
 		if(livello == p.getN()) {
-			System.out.println(parziale);
+			this.soluzioni.add(new Schedina(parziale));
 			return;
 		}
 		
@@ -37,7 +46,5 @@ public class Espandi {
 			// backtrack
 			parziale.removeLast();
 		}
-		
 	}
-	
 }
